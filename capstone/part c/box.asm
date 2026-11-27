@@ -1,0 +1,47 @@
+(LOOP)
+    @KBD
+    D=M
+    @SET_BLACK
+    D;JNE
+    @color
+    M=0
+    @INIT_DRAW
+    0;JMP
+
+(SET_BLACK)
+    @color
+    M=-1
+
+(INIT_DRAW)
+    @16672
+    D=A
+    @addr
+    M=D
+    @20
+    D=A
+    @rows
+    M=D
+
+(ROW_LOOP)
+    @rows
+    D=M
+    @LOOP
+    D;JEQ
+    @color
+    D=M
+    @addr
+    A=M
+    M=D
+    @color
+    D=M
+    @addr
+    A=M+1
+    M=D
+    @32
+    D=A
+    @addr
+    M=D+M
+    @rows
+    M=M-1
+    @ROW_LOOP
+    0;JMP
